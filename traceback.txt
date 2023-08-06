@@ -1,0 +1,22 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 256, in script
+    player "Где я?"
+Exception: Sayer 'player' is not defined.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 256, in script
+    player "Где я?"
+  File "J:\renpy-8.1.1-sdk\renpy\ast.py", line 890, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "J:\renpy-8.1.1-sdk\renpy\ast.py", line 783, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 'player' is not defined.
+
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.1.1.23060707
+Everlasting operation 1.0
+Sun Aug  6 20:59:51 2023
