@@ -1,4 +1,4 @@
-define rek = Character("[name]", color="#1890FF")
+define rek = Character("[player_name]", color="#1890FF")
 define cyp = Character('cypeppypep', color='#E52B50')
 define anc = Character('Анкета', color='#CD9575', what_color='#1E1112', kind=nvl)
 define anon_ant = Character('?', color='#AF2B1E')

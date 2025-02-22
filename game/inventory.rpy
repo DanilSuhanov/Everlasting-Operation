@@ -79,8 +79,8 @@ screen item_tooltip(item):
 
 screen inventory_show():
     imagebutton:
-        xalign 0.95
-        yalign 0.05
+        xalign 0.99
+        yalign 0.01
         idle "inventory_button.png"
-        hover "inventory_button.png"
+        hover "inventory_button_hover.png"
         action Show("inventory_screen")
