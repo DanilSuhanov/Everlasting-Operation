@@ -1,121 +1,4 @@
-﻿define rek = Character("[name]", color="#1890FF")
-define cyp = Character('cypeppypep', color='#E52B50')
-define anc = Character('Анкета', color='#CD9575', what_color='#1E1112', kind=nvl)
-define anon_ant = Character('?', color='#AF2B1E')
-define pod = Character('Подводный', color='#531A50')
-define anon_pod = Character('?', kind=pod)
-define rekMind = Character(what_prefix="«", what_suffix="»", kind=rek)
-define naidjel = Character('Найджел', color='#4c3baa')
-define anon_naidjel = Character('?', kind=naidjel)
-
-default player_inventory = []
-
-define items_data = {
-    "anketa": {"name": "Анкета Battle Brothers", "image": "anketa.png", "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан..."}
-}
-
-define items = [
-    {
-        "xpos": 100,
-        "ypos": 200,
-        "idle": "item1.png",
-        "hover": "item1_hover.png",
-        "action": Call("item1_selected")
-    }
-]
-
-init python:
-    def hide_interact():
-        renpy.hide_screen("inventory_screen")
-        renpy.hide_screen("item_tooltip")
-    
-    def handle_item(item_id):
-        global context  # Используем глобальную переменную контекста
-
-        if item_id == "anketa":
-            if context == "start":
-                hide_interact()
-                renpy.jump("anketa")
-            else:
-                renpy.notify("Сейчас это не нужно.")
-        else:
-            renpy.notify("Этот предмет не имеет действий в текущем контексте.")
-
-init python:
-    def add_item(item_id):
-        if item_id not in player_inventory:
-            player_inventory.append(item_id)
-            renpy.notify(f"Добавлен предмет: {items_data[item_id]['name']}")
-        else:
-            renpy.notify(f"Предмет {items_data[item_id]['name']} уже в инвентаре.")
-
-    def remove_item(item_id):
-        if item_id in player_inventory:
-            player_inventory.remove(item_id)
-            renpy.notify(f"Удален предмет: {items_data[item_id]['name']}")
-        else:
-            renpy.notify(f"Предмет {items_data[item_id]['name']} не найден.")
-
-screen inventory_screen():
-    modal True  # Делаем экран модальным
-    frame:
-        xfill True
-        yfill True
-        background "#333333"
-        padding (20, 20)
-
-        imagebutton:
-            xalign 1.0
-            yalign 0.0
-            idle "close_button.png"
-            hover "close_button.png"
-            action Hide("inventory_screen")  # Закрываем инвентарь
-
-        text "Инвентарь" size 50 xalign 0.5 yalign 0.1
-
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            spacing 50
-            for item_id in player_inventory:
-                $ item = items_data[item_id]
-                vbox:
-                    imagebutton:
-                        idle item["image"]
-                        hover item["image"]
-                        action Function(handle_item, item_id)  # Вызов функции handle_item
-                        hovered Show("item_tooltip", item=item)
-                        unhovered Hide("item_tooltip")
-                    text item["name"] size 30 xalign 0.5
-
-screen item_tooltip(item):
-    frame:
-        xpos renpy.get_mouse_pos()[0] + 20
-        ypos renpy.get_mouse_pos()[1] + 20
-        padding (10, 10)
-        background "#000000"
-        vbox:
-            text item["name"] size 25 color "#FFFFFF"
-            text item["description"] size 20 color "#FFFFFF"
-
-screen game_interface():
-    imagebutton:
-        xalign 0.95
-        yalign 0.05
-        idle "inventory_button.png"
-        hover "inventory_button.png"
-        action Show("inventory_screen")
-
-screen item_selection(items):
-    for item in items:
-        imagebutton:
-            xpos item["xpos"]
-            ypos item["ypos"]
-            idle item["idle"]
-            hover item["hover"]
-            action item["action"]
-
-screen stats():
+﻿screen stats():
     style_prefix "metal"
     frame:
         xalign 1 ypos 50
@@ -136,15 +19,6 @@ screen open_stats():
         xalign 1 ypos 50
         textbutton "Открыть статы":
             action Show("stats")
- 
-screen item_selection(items):
-    for item in items:
-        imagebutton:
-            xpos item["xpos"]
-            ypos item["ypos"]
-            idle item["idle"]
-            hover item["hover"]
-            action item["action"]
 
 
 style metal_frame:
@@ -158,17 +32,9 @@ transform cyptrans:
     yalign 0.5
 
 label start:
-    show screen game_interface
+    show screen inventory_show
+    show screen profile_show
     $ context = "start"
-
-    $ power = 0
-    $ agility = 0
-    $ fortune = 0
-    $ endurance = 0
-    $ stealth = 0
-    $ intellect = 0
-    $ charisma = 0
-    $ name = "Рекрут"
 
     scene bg shtab with Dissolve(.5)
 
@@ -217,12 +83,8 @@ label start:
     window hide
     hide cyper with Dissolve(.5)
     while True:
-        call screen item_selection(items)
+        call screen item_selection(cypeppypep_room_items)
         pause
-
-label item1_selected:
-    "Вы выбрали первый предмет."
-    return
 
 label anketa:
     $ context = "after_anketa"

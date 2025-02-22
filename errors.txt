@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 215: expected end of line
-    window hide with Dissolve(.5)
-                ^
+File "game/player_profile.rpy", line 14: 'global' is not a keyword argument or valid child of the screen statement.
+    global player_skills
+          ^
 
-Ren'Py Version: Ren'Py 8.0.3.22090809
-Sat Feb 22 03:24:31 2025
+Ren'Py Version: Ren'Py 8.3.4.24120703
+Sat Feb 22 20:37:49 2025
