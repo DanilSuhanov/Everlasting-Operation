@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 120: invalid syntax
-    define player = Character(name, color="#1890FF")
-            ^
+File "game/script.rpy", line 215: expected end of line
+    window hide with Dissolve(.5)
+                ^
 
-Ren'Py Version: Ren'Py 8.1.1.23060707
-Sun Aug  6 20:51:30 2023
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Sat Feb 22 03:24:31 2025

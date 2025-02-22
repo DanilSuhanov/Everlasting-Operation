@@ -8,6 +8,113 @@ define rekMind = Character(what_prefix="«", what_suffix="»", kind=rek)
 define naidjel = Character('Найджел', color='#4c3baa')
 define anon_naidjel = Character('?', kind=naidjel)
 
+default player_inventory = []
+
+define items_data = {
+    "anketa": {"name": "Анкета Battle Brothers", "image": "anketa.png", "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан..."}
+}
+
+define items = [
+    {
+        "xpos": 100,
+        "ypos": 200,
+        "idle": "item1.png",
+        "hover": "item1_hover.png",
+        "action": Call("item1_selected")
+    }
+]
+
+init python:
+    def hide_interact():
+        renpy.hide_screen("inventory_screen")
+        renpy.hide_screen("item_tooltip")
+    
+    def handle_item(item_id):
+        global context  # Используем глобальную переменную контекста
+
+        if item_id == "anketa":
+            if context == "start":
+                hide_interact()
+                renpy.jump("anketa")
+            else:
+                renpy.notify("Сейчас это не нужно.")
+        else:
+            renpy.notify("Этот предмет не имеет действий в текущем контексте.")
+
+init python:
+    def add_item(item_id):
+        if item_id not in player_inventory:
+            player_inventory.append(item_id)
+            renpy.notify(f"Добавлен предмет: {items_data[item_id]['name']}")
+        else:
+            renpy.notify(f"Предмет {items_data[item_id]['name']} уже в инвентаре.")
+
+    def remove_item(item_id):
+        if item_id in player_inventory:
+            player_inventory.remove(item_id)
+            renpy.notify(f"Удален предмет: {items_data[item_id]['name']}")
+        else:
+            renpy.notify(f"Предмет {items_data[item_id]['name']} не найден.")
+
+screen inventory_screen():
+    modal True  # Делаем экран модальным
+    frame:
+        xfill True
+        yfill True
+        background "#333333"
+        padding (20, 20)
+
+        imagebutton:
+            xalign 1.0
+            yalign 0.0
+            idle "close_button.png"
+            hover "close_button.png"
+            action Hide("inventory_screen")  # Закрываем инвентарь
+
+        text "Инвентарь" size 50 xalign 0.5 yalign 0.1
+
+        hbox:
+            xalign 0.5
+            yalign 0.5
+            spacing 50
+            for item_id in player_inventory:
+                $ item = items_data[item_id]
+                vbox:
+                    imagebutton:
+                        idle item["image"]
+                        hover item["image"]
+                        action Function(handle_item, item_id)  # Вызов функции handle_item
+                        hovered Show("item_tooltip", item=item)
+                        unhovered Hide("item_tooltip")
+                    text item["name"] size 30 xalign 0.5
+
+screen item_tooltip(item):
+    frame:
+        xpos renpy.get_mouse_pos()[0] + 20
+        ypos renpy.get_mouse_pos()[1] + 20
+        padding (10, 10)
+        background "#000000"
+        vbox:
+            text item["name"] size 25 color "#FFFFFF"
+            text item["description"] size 20 color "#FFFFFF"
+
+screen game_interface():
+    imagebutton:
+        xalign 0.95
+        yalign 0.05
+        idle "inventory_button.png"
+        hover "inventory_button.png"
+        action Show("inventory_screen")
+
+screen item_selection(items):
+    for item in items:
+        imagebutton:
+            xpos item["xpos"]
+            ypos item["ypos"]
+            idle item["idle"]
+            hover item["hover"]
+            action item["action"]
+
 screen stats():
     style_prefix "metal"
     frame:
@@ -28,8 +135,17 @@ screen open_stats():
     frame:
         xalign 1 ypos 50
         textbutton "Открыть статы":
-             action Show("stats")
+            action Show("stats")
  
+screen item_selection(items):
+    for item in items:
+        imagebutton:
+            xpos item["xpos"]
+            ypos item["ypos"]
+            idle item["idle"]
+            hover item["hover"]
+            action item["action"]
+
 
 style metal_frame:
     background "#434B4D"
@@ -41,8 +157,9 @@ transform cyptrans:
     xalign 0.5
     yalign 0.5
 
-
 label start:
+    show screen game_interface
+    $ context = "start"
 
     $ power = 0
     $ agility = 0
@@ -53,8 +170,7 @@ label start:
     $ charisma = 0
     $ name = "Рекрут"
 
-    scene bg shtab
-    with Dissolve(.5)
+    scene bg shtab with Dissolve(.5)
 
     "Передо мной предстала массивная обитая кожей дверь."
 
@@ -64,8 +180,7 @@ label start:
 
     "Дверь открылась на удивление легко. В кабинете было значительно темнее, чем снаружи, и мне показалось, будто я прервал некое таинство."
 
-    show cyper standart at cyptrans
-    with Dissolve(.5)
+    show cyper standart at cyptrans with Dissolve(.5)
 
     "В дальнем конце комнаты за резным столом сидел человек. Он сделал едва заметное движение головой."
 
@@ -89,6 +204,8 @@ label start:
 
     cyp "Заполни"
 
+    $ add_item("anketa")
+
     "Он говорил очень спокойно, и в нем не было ни нотки агрессии, но это ничуть не успокаивало. Скорее наоборот: я не знал, что от него ожидать."
 
     "Да еще и эта маска…"
@@ -96,6 +213,21 @@ label start:
     "Вдруг он какой-нибудь псих? Война же меняет людей."
 
     "На секунду я усомнился в своем решении вступить в бб."
+
+    window hide
+    hide cyper with Dissolve(.5)
+    while True:
+        call screen item_selection(items)
+        pause
+
+label item1_selected:
+    "Вы выбрали первый предмет."
+    return
+
+label anketa:
+    $ context = "after_anketa"
+    scene bg shtab with Dissolve(.5)
+    show cyper standart at cyptrans with Dissolve(.5)
 
     cyp "Рекрут, ты тут?"
 
@@ -251,6 +383,9 @@ label start:
 
     "На удивление его слова не звучали как-то угрожающе. Он не излучал ни злобы, ни недовольства. Мне хотелось бы верить своему комиссару, но где-то в глубине души я понимал, что я совершил ужасную ошибку…"
 
+    jump secondScen
+
+label secondScen:
     scene bg load
     with Dissolve(.5)
 
@@ -280,6 +415,11 @@ label start:
     scene bg lager
     with Dissolve(.5)
 
+    show background_video
+
     "Хуй"
+    "Нажмите любую клавишу, чтобы продолжить."
+    $ renpy.pause()
+    hide background_video
 
     return
