@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/back_items.rpy", line 32: expected statement.
-    def get_position(item):
-                    ^
+File "game/inventory.rpy", line 8: invalid syntax
+            "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан..."\
+                          ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sat Feb 22 23:37:12 2025
+Sun Feb 23 01:02:06 2025

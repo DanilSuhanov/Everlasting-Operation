@@ -33,9 +33,18 @@ screen item_selection(items):
             action item["action"]
 
 label cyper_toom_label:
-    show cyper standart at cyptrans
-    cyp "Рекрут, ты тут?"
-    "Супер демонстративно потряс бумажкой в воздухе."
-    "Этот человек будто излучал ауру безоговорочного авторитета, и его воле было невозможно противиться."
+    if "call_count" not in cypeppypep_room_items[0]:
+        $ cypeppypep_room_items[0]["call_count"] = 0
+    
+    if cypeppypep_room_items[0]["call_count"] < 2:
+        show cyper standart at cyptrans
+        cyp "Рекрут, ты тут?"
+        "Супер демонстративно потряс бумажкой в воздухе."
+        "Этот человек будто излучал ауру безоговорочного авторитета, и его воле было невозможно противиться."
+    else:
+        show cyper standart at cyptrans
+        cyp "Долго ты ещё собираешься смотреть на меня?"
+
     hide cyper
+    $ cypeppypep_room_items[0]["call_count"] += 1
     return

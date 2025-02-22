@@ -59,9 +59,9 @@ label start:
 
     window hide
     hide cyper with Dissolve(.5)
+
     while True:
         call screen item_selection(cypeppypep_room_items)
-        pause
 
 label anketa:
     $ context = "after_anketa"
@@ -210,8 +210,7 @@ label anketa:
     jump secondScen
 
 label secondScen:
-    scene bg load
-    with Dissolve(.5)
+    scene bg load with Dissolve(.5)
 
     "Прошло несколько часов..."
     
@@ -219,8 +218,7 @@ label secondScen:
 
     "Сквозь темноту вы слышите тяжёлый шум мотора и пару неизвестных голосов."
 
-    scene bg auto
-    with Dissolve(.5)
+    scene bg auto with Dissolve(.5)
 
     "Открыв сонные глаза вы видите дюжину незнакомых лиц, по ощущению прошло около двух часов, но спина болит на все пять."
 
@@ -236,8 +234,7 @@ label secondScen:
 
     anon_naidjel "В наших краях таких странных лиц как у тебя, не водится."
 
-    scene bg lager
-    with Dissolve(.5)
+    scene bg lager with Dissolve(.5)
 
     "Нажмите любую клавишу, чтобы продолжить."
 

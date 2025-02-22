@@ -1,7 +1,12 @@
 default player_inventory = []
 
 define items_data = {
-    "anketa": {"name": "Анкета Battle Brothers", "image": "anketa.png", "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан..."}
+    "anketa": {
+        "name": "Анкета Battle Brothers", 
+        "image": "anketa.png",
+        "image_hover": "anketa_hover.png",
+        "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан..."
+    }
 }
 
 init python:
@@ -61,7 +66,7 @@ screen inventory_screen():
                 vbox:
                     imagebutton:
                         idle item["image"]
-                        hover item["image"]
+                        hover item["image_hover"]
                         action Function(handle_item, item_id)  # Вызов функции handle_item
                         hovered Show("item_tooltip", item=item)
                         unhovered Hide("item_tooltip")

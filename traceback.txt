@@ -1,36 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 206, in script
-    cyp "Добро пожаловать в Battle Brothers, [name]. Ты cделал правильный выбор. Поверь, будет весело."
-KeyError: 'name'
+  File "game/script.rpy", line 64, in script call
+    call screen item_selection(cypeppypep_room_items)
+  File "game/back_items.rpy", line 50, in script
+    $ current_item["context"]["call_count"] += 1
+  File "game/back_items.rpy", line 50, in <module>
+    $ current_item["context"]["call_count"] += 1
+NameError: name 'current_item' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 206, in script
-    cyp "Добро пожаловать в Battle Brothers, [name]. Ты cделал правильный выбор. Поверь, будет весело."
-  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 2579, in execute
-    Say.execute(self)
-  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 621, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "G:\renpy-8.3.4-sdk\renpy\exports\sayexports.py", line 132, in say
-    who(what, *args, **kwargs)
-  File "G:\renpy-8.3.4-sdk\renpy\character.py", line 1440, in __call__
-    what = self.prefix_suffix("what", self.what_prefix, what, self.what_suffix)
-  File "G:\renpy-8.3.4-sdk\renpy\character.py", line 1354, in prefix_suffix
-    return (sub(prefix) + sub(body) + sub(suffix))
-  File "G:\renpy-8.3.4-sdk\renpy\character.py", line 1334, in sub
-    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
-  File "G:\renpy-8.3.4-sdk\renpy\substitutions.py", line 373, in substitute
-    s = interpolate(s, variables) # type: ignore
-  File "G:\renpy-8.3.4-sdk\renpy\substitutions.py", line 89, in interpolate
-    value, _ = formatter.get_field(code, (), scope)
-  File "lib/python3.9/string.py", line 270, in get_field
-  File "lib/python3.9/string.py", line 227, in get_value
-KeyError: 'name'
+  File "game/script.rpy", line 64, in script call
+    call screen item_selection(cypeppypep_room_items)
+  File "game/back_items.rpy", line 50, in script
+    $ current_item["context"]["call_count"] += 1
+  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "G:\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/back_items.rpy", line 50, in <module>
+    $ current_item["context"]["call_count"] += 1
+NameError: name 'current_item' is not defined
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.3.4.24120703
 Everlasting operation 1.0
-Sun Feb 23 00:06:21 2025
+Sun Feb 23 00:39:23 2025
