@@ -41,10 +41,16 @@ label cyper_toom_label:
         cyp "Рекрут, ты тут?"
         "Супер демонстративно потряс бумажкой в воздухе."
         "Этот человек будто излучал ауру безоговорочного авторитета, и его воле было невозможно противиться."
-    else:
+    elif cypeppypep_room_items[0]["call_count"] < 4:
         show cyper standart at cyptrans
         cyp "Долго ты ещё собираешься смотреть на меня?"
+    else:
+        show cyper standart at cyptrans
+        cyp "..."
 
     hide cyper
-    $ cypeppypep_room_items[0]["call_count"] += 1
-    return
+    if cypeppypep_room_items[0]["call_count"] < 4:
+        $ cypeppypep_room_items[0]["call_count"] += 1
+        call screen item_selection(cypeppypep_room_items)
+    else:
+        call screen item_selection([])

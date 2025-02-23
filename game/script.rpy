@@ -60,8 +60,7 @@ label start:
     window hide
     hide cyper with Dissolve(.5)
 
-    while True:
-        call screen item_selection(cypeppypep_room_items)
+    call screen item_selection(cypeppypep_room_items)
 
 label anketa:
     $ context = "after_anketa"
@@ -244,6 +243,5 @@ label secondScen:
 
     "Нажмите любую клавишу, чтобы продолжить."
 
-    call screen item_selection([])
-
-    return
+    while True:
+        call screen item_selection([])
