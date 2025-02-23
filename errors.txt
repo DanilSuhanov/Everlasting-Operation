@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/inventory.rpy", line 8: invalid syntax
-            "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан..."\
-                          ^
+File "game/script.rpy", line 14: invalid syntax
+            call screen item_selection(world_items)
+                  ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sun Feb 23 01:02:06 2025
+Sun Feb 23 13:40:39 2025

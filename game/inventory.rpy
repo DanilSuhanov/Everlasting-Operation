@@ -45,7 +45,7 @@ screen inventory_screen():
     frame:
         xfill True
         yfill True
-        background "#333333"
+        background "#1E1E2E"  # Тёмный фон
         padding (20, 20)
 
         imagebutton:
@@ -55,7 +55,12 @@ screen inventory_screen():
             hover "close_button.png"
             action Hide("inventory_screen")  # Закрываем инвентарь
 
-        text "Инвентарь" size 50 xalign 0.5 yalign 0.1
+        text "Инвентарь":
+            size 50 
+            xalign 0.5 
+            yalign 0.1
+            color "#89B4FA"  # Голубой цвет для заголовка
+            font "DejaVuSans-Bold.ttf"
 
         hbox:
             xalign 0.5
@@ -65,12 +70,16 @@ screen inventory_screen():
                 $ item = items_data[item_id]
                 vbox:
                     imagebutton:
+                        xalign 0.5
                         idle item["image"]
                         hover item["image_hover"]
                         action Function(handle_item, item_id)  # Вызов функции handle_item
                         hovered Show("item_tooltip", item=item)
                         unhovered Hide("item_tooltip")
-                    text item["name"] size 30 xalign 0.5
+                    text item["name"]: 
+                        size 30 
+                        xalign 0.5
+                        color "#FFFFFF"
 
 screen item_tooltip(item):
     frame:

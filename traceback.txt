@@ -3,28 +3,68 @@
 While running game code:
   File "game/script.rpy", line 64, in script call
     call screen item_selection(cypeppypep_room_items)
-  File "game/back_items.rpy", line 50, in script
-    $ current_item["context"]["call_count"] += 1
-  File "game/back_items.rpy", line 50, in <module>
-    $ current_item["context"]["call_count"] += 1
-NameError: name 'current_item' is not defined
+  File "game/script.rpy", line 247, in script
+    call screen item_selection()
+  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/back_items.rpy", line 25, in execute
+    screen item_selection(items):
+  File "game/back_items.rpy", line 25, in execute
+    screen item_selection(items):
+  File "game/back_items.rpy", line 26, in execute
+    for item in items:
+  File "game/back_items.rpy", line 26, in <module>
+    for item in items:
+NameError: name 'items' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
   File "game/script.rpy", line 64, in script call
     call screen item_selection(cypeppypep_room_items)
-  File "game/back_items.rpy", line 50, in script
-    $ current_item["context"]["call_count"] += 1
-  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "G:\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/back_items.rpy", line 50, in <module>
-    $ current_item["context"]["call_count"] += 1
-NameError: name 'current_item' is not defined
+  File "game/script.rpy", line 247, in script
+    call screen item_selection()
+  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 1980, in execute
+    self.call("execute")
+  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 1959, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "G:\renpy-8.3.4-sdk\renpy\statements.py", line 374, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "G:\renpy-8.3.4-sdk\renpy\exports\statementexports.py", line 345, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "G:\renpy-8.3.4-sdk\renpy\ui.py", line 301, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "G:\renpy-8.3.4-sdk\renpy\display\core.py", line 2215, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "G:\renpy-8.3.4-sdk\renpy\display\core.py", line 2745, in interact_core
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "G:\renpy-8.3.4-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "G:\renpy-8.3.4-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "G:\renpy-8.3.4-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "G:\renpy-8.3.4-sdk\renpy\display\screen.py", line 480, in visit_all
+    callback(self)
+  File "G:\renpy-8.3.4-sdk\renpy\display\core.py", line 2745, in <lambda>
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "G:\renpy-8.3.4-sdk\renpy\display\screen.py", line 491, in per_interact
+    self.update()
+  File "G:\renpy-8.3.4-sdk\renpy\display\screen.py", line 697, in update
+    self.screen.function(**self.scope)
+  File "game/back_items.rpy", line 25, in execute
+    screen item_selection(items):
+  File "game/back_items.rpy", line 25, in execute
+    screen item_selection(items):
+  File "game/back_items.rpy", line 26, in execute
+    for item in items:
+  File "game/back_items.rpy", line 26, in <module>
+    for item in items:
+NameError: name 'items' is not defined
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.3.4.24120703
 Everlasting operation 1.0
-Sun Feb 23 00:39:23 2025
+Sun Feb 23 13:36:14 2025
