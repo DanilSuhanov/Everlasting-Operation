@@ -4,6 +4,5 @@ define anc = Character('Анкета', color='#CD9575', what_color='#1E1112', ki
 define anon_ant = Character('?', color='#AF2B1E')
 define pod = Character('Подводный', color='#531A50')
 define anon_pod = Character('?', kind=pod)
-define rekMind = Character(what_prefix="«", what_suffix="»", kind=rek)
 define naidjel = Character('Найджел', color='#4c3baa')
 define anon_naidjel = Character('?', kind=naidjel)

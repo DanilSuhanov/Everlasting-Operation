@@ -1,38 +1,44 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 63, in script call
+  File "game/script.rpy", line 62, in script call
     call screen world_screen("cyper_shtab")
-  File "game/open_world.rpy", line 84, in script
-    call screen item_selection("cyper_shtab")
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-Exception: Screen item_selection is not known.
-
+  File "game/open_world.rpy", line 103, in script call
+    call screen world_screen("cyper_shtab")
+  File "game/open_world.rpy", line 103, in script call
+    call screen world_screen("cyper_shtab")
+  File "game/open_world.rpy", line 103, in script call
+    call screen world_screen("cyper_shtab")
+  [Previous line repeated 1 more time]
+  File "game/script.rpy", line 221, in script
+    $ add_item_to_place(getExitButton(Jump("out_stab")))
+  File "game/script.rpy", line 221, in <module>
+    $ add_item_to_place(getExitButton(Jump("out_stab")))
+TypeError: add_item_to_place() missing 2 required positional arguments: 'item_key' and 'item'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 63, in script call
+  File "game/script.rpy", line 62, in script call
     call screen world_screen("cyper_shtab")
-  File "game/open_world.rpy", line 84, in script
-    call screen item_selection("cyper_shtab")
-  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 1980, in execute
-    self.call("execute")
-  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 1959, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-  File "G:\renpy-8.3.4-sdk\renpy\statements.py", line 374, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "G:\renpy-8.3.4-sdk\renpy\exports\statementexports.py", line 331, in call_screen
-    renpy.exports.show_screen(_screen_name, *args, _transient=True, **kwargs)
-  File "G:\renpy-8.3.4-sdk\renpy\display\screen.py", line 1325, in show_screen
-    raise Exception("Screen %s is not known.\n" % (name[0],))
-Exception: Screen item_selection is not known.
-
+  File "game/open_world.rpy", line 103, in script call
+    call screen world_screen("cyper_shtab")
+  File "game/open_world.rpy", line 103, in script call
+    call screen world_screen("cyper_shtab")
+  File "game/open_world.rpy", line 103, in script call
+    call screen world_screen("cyper_shtab")
+  [Previous line repeated 1 more time]
+  File "game/script.rpy", line 221, in script
+    $ add_item_to_place(getExitButton(Jump("out_stab")))
+  File "G:\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "G:\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 221, in <module>
+    $ add_item_to_place(getExitButton(Jump("out_stab")))
+TypeError: add_item_to_place() missing 2 required positional arguments: 'item_key' and 'item'
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.3.4.24120703
 Everlasting operation 1.0
-Sun Feb 23 15:08:33 2025
+Sun Feb 23 16:58:37 2025

@@ -12,6 +12,8 @@ label start:
     show screen inventory_show
     show screen profile_show
 
+    play music "audio/warder_athem.mp3" loop fadein 2.0 fadeout 2.0
+
     scene bg shtab with Dissolve(.5)
 
     "Передо мной предстала массивная обитая кожей дверь."
@@ -210,9 +212,29 @@ label anketa:
 
     "На удивление его слова не звучали как-то угрожающе. Он не излучал ни злобы, ни недовольства. Мне хотелось бы верить своему комиссару, но где-то в глубине души я понимал, что я совершил ужасную ошибку…"
 
-    jump secondScen
+    hide cyper with Dissolve(.5)
 
-label secondScen:
+    jump stab_open_world
+
+label stab_open_world:
+    play music "audio/warder_athem.mp3" loop fadein 2.0 fadeout 2.0
+    scene bg shtab with Dissolve(.5)
+
+    #Добавление супера с новым диалогом
+    $ cyper_item["action"] = Call("cyper_after_anket")
+    $ add_item_to_place("cyper_shtab", "cyper", cyper_item)
+    #Добавление кнопки выхода выводящей на out_stab
+    $ add_item_to_place("cyper_shtab", "exit", getExitButton(Jump("out_stab")))
+
+    call screen world_screen("cyper_shtab")
+
+label out_stab:
+    stop music fadeout 2.0
+    show bg u_shtaba with Dissolve(.5)
+    $ add_item_to_place("out_shtab", "vhod", vhod_v_stab)
+    call screen world_screen("out_shtab")
+
+label lecacy:
     scene bg load with Dissolve(.5)
 
     "Прошло несколько часов..."
