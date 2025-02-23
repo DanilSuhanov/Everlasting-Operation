@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/back_items.rpy", line 44: expected ':' not found.
-    else if cypeppypep_room_items[0]["call_count"] < 4:
-         ^
-
-File "game/back_items.rpy", line 47: expected statement.
-    else:
-        ^
+File "game/script.rpy", line 16: end of line expected.
+    "[places["cyper_shtab"][places["cyper_shtab"]["current_state"]]]"
+                                    ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sun Feb 23 13:59:43 2025
+Sun Feb 23 14:27:51 2025

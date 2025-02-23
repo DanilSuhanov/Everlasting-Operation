@@ -11,7 +11,6 @@ transform cyptrans:
 label start:
     show screen inventory_show
     show screen profile_show
-    $ context = "start"
 
     scene bg shtab with Dissolve(.5)
 
@@ -60,10 +59,9 @@ label start:
     window hide
     hide cyper with Dissolve(.5)
 
-    call screen item_selection(cypeppypep_room_items)
+    call screen world_screen("cyper_shtab")
 
 label anketa:
-    $ context = "after_anketa"
     scene bg shtab with Dissolve(.5)
     show cyper standart at cyptrans with Dissolve(.5)
 
@@ -241,7 +239,4 @@ label secondScen:
 
     scene bg lager with Dissolve(.5)
 
-    "Нажмите любую клавишу, чтобы продолжить."
-
-    while True:
-        call screen item_selection([])
+    call screen world_screen("empty")

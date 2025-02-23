@@ -5,7 +5,8 @@ define items_data = {
         "name": "Анкета Battle Brothers", 
         "image": "anketa.png",
         "image_hover": "anketa_hover.png",
-        "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан..."
+        "description": "Анкета для вступления в клан Battle Brothers. Мне нужно её заполнить чтобы вступить в клан...",
+        "state": "empty"
     }
 }
 
@@ -14,15 +15,19 @@ init python:
         renpy.hide_screen("inventory_screen")
         renpy.hide_screen("item_tooltip")
     
+    def changeItemState(item_id, state):
+        items_data[item_id]["state"] = state
+    
     def handle_item(item_id):
-        global context  # Используем глобальную переменную контекста
+        _item = items_data[item_id]
 
         if item_id == "anketa":
-            if context == "start":
+            if _item["state"] == "empty":
+                changeItemState(item_id, "process")
                 hide_interact()
                 renpy.jump("anketa")
             else:
-                renpy.notify("Сейчас это не нужно.")
+                renpy.notify("Вы уже заполняете анкету...")
         else:
             renpy.notify("Этот предмет не имеет действий в текущем контексте.")
     
